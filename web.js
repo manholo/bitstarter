@@ -4,11 +4,11 @@ var fs = require('fs');
 var app = express.createServer(express.logger());
 
 var getDataFromFile = function(file, cont ) {
-    cont(fs.readFileSync(file));
+    cont.send(fs.readFileSync(file).toString());
 }
 
 app.get('/', function(request, response) {
-    getDataFromFile("index.html", response.send);
+    getDataFromFile("index.html", response );
 });
 
 var port = process.env.PORT || 5000;
